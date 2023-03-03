@@ -11,7 +11,8 @@ import { UserModel } from './user.model';
 
 interface CreationAttributes {
   content: string;
-  userId: number;
+  ownerId: number;
+  postId: number;
 }
 
 @Table({ tableName: 'post-comment' })

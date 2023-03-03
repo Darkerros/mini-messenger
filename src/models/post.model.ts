@@ -15,6 +15,7 @@ import { PostCommentModel } from './post-comment.model';
 interface CreationAttributes {
   content: string;
   image: string;
+  ownerId: number;
 }
 
 @Table({ tableName: 'posts' })
