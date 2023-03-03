@@ -1,12 +1,13 @@
 import {
   BelongsToMany,
   Column,
-  DataType, HasMany,
+  DataType,
+  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
-import {PostModel} from "./post.model";
-import {PostLikeModel} from "./post-like.model";
+import { PostModel } from './post.model';
+import { PostLikeModel } from './post-like.model';
 
 interface CreateAttributes {
   firstName: string;

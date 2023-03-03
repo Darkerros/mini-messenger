@@ -3,7 +3,8 @@ import {
   BelongsToMany,
   Column,
   DataType,
-  ForeignKey, HasMany,
+  ForeignKey,
+  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
