@@ -13,6 +13,6 @@ import { UsersModule } from '../users/users.module';
     }),
     UsersModule,
   ],
-  exports: [JwtModule],
+  exports: [JwtModule, AuthService],
 })
 export class AuthModule {}
