@@ -11,7 +11,7 @@ export class AuthService {
     constructor(private jwtService: JwtService, private usersService: UsersService) {}
 
     async register(dto: CreateUserDto) {
-        const candidate = this.usersService.getUserByEmail(dto.email)
+        const candidate = await this.usersService.getUserByEmail(dto.email)
         if (candidate) throw new HttpException("Пользователь с таким email уже существует", HttpStatus.BAD_REQUEST)
 
         const hashedPassword = await bcrypt.hash(dto.password, 5)
@@ -25,7 +25,8 @@ export class AuthService {
     }
 
     async validateUser(dto: LoginUserDto) {
-        const user = await this.usersService.getUserByEmail(dto.emaiL)
+        const user = await this.usersService.getUserByEmail(dto.email)
+        if (!user) throw new UnauthorizedException({message: "Некорректо введен email или пароль"})
         const isPasswordEquals = bcrypt.compare(dto.password, user.password)
         if (user && isPasswordEquals) return user
         throw new UnauthorizedException({ message: "Некорректо введен email или пароль"})
