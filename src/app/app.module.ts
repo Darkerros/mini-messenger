@@ -6,6 +6,8 @@ import {UserModel} from "../models/user.model";
 import {PostModel} from "../models/post.model";
 import {PostLikeModel} from "../models/post-like.model";
 import {PostCommentModel} from "../models/post-comment.model";
+import {AuthModule} from "../auth/auth.module";
+import {UsersModule} from "../users/users.module";
 
 @Module({
   imports: [
@@ -20,8 +22,12 @@ import {PostCommentModel} from "../models/post-comment.model";
         password: process.env.POSTGRES_PASSWORD,
         database: process.env.POSTGRES_NAME,
         models: [UserModel, PostModel, PostLikeModel, PostCommentModel],
-        autoLoadModels: true
-      })
+        autoLoadModels: true,
+        sync: {force: true},
+          logging: false
+      }),
+      AuthModule,
+      UsersModule
   ],
   controllers: [],
   providers: [],
